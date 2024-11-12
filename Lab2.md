@@ -61,3 +61,118 @@ Nhiệm vụ và Quan hệ:
 Employee kết nối với Project qua EmployeeProjectAssignment.
 Quan hệ này giúp tính toán chi phí theo từng dự án khi kết hợp với Timecard và Paycheck.
 
+
+Code java mô phỏng Maintain Timecard:
+
+Lớp Employee đại diện cho nhân viên:
+
+      class Employee {
+    private int id;
+    private String name;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+Lớp Timecard lưu trữ thông tin giờ làm việc của nhân viên:
+
+      class Timecard {
+    private int employeeId;
+    private Date date;
+    private double hoursWorked;
+
+    public Timecard(int employeeId, Date date, double hoursWorked) {
+        this.employeeId = employeeId;
+        this.date = date;
+        this.hoursWorked = hoursWorked;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public double getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(double hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    @Override
+    public String toString() {
+        return "Timecard{" +
+                "employeeId=" + employeeId +
+                ", date=" + date +
+                ", hoursWorked=" + hoursWorked +
+                '}';
+    }
+}
+
+Lớp TimecardManager quản lý các thao tác thêm, cập nhật, và hiển thị Timecard:
+
+      class TimecardManager {
+    private List<Timecard> timecards = new ArrayList<>();
+
+    // Thêm mới Timecard cho một nhân viên
+    public void addTimecard(Employee employee, Date date, double hoursWorked) {
+        Timecard timecard = new Timecard(employee.getId(), date, hoursWorked);
+        timecards.add(timecard);
+        System.out.println("Added: " + timecard);
+    }
+
+    // Cập nhật Timecard dựa trên mã nhân viên và ngày
+    public void updateTimecard(int employeeId, Date date, double newHoursWorked) {
+        for (Timecard timecard : timecards) {
+            if (timecard.getEmployeeId() == employeeId && timecard.getDate().equals(date)) {
+                timecard.setHoursWorked(newHoursWorked);
+                System.out.println("Updated: " + timecard);
+                return;
+            }
+        }
+        System.out.println("Timecard not found for update.");
+    }
+
+    // Hiển thị tất cả Timecard của một nhân viên
+    public void displayTimecards(int employeeId) {
+        System.out.println("Timecards for Employee ID " + employeeId + ":");
+        for (Timecard timecard : timecards) {
+            if (timecard.getEmployeeId() == employeeId) {
+                System.out.println(timecard);
+            }
+        }
+    }
+}
+
+Lớp MaintainTimecardUseCase mô phỏng ca sử dụng Maintain Timecard:
+
+      public class MaintainTimecardUseCase {
+      public static void main(String[] args) {
+        Employee emp = new Employee(1, "Alice");
+        TimecardManager manager = new TimecardManager();
+
+        // Thêm Timecard mới
+        Date date1 = new Date();
+        manager.addTimecard(emp, date1, 8.0);
+
+        // Cập nhật Timecard
+        manager.updateTimecard(emp.getId(), date1, 9.5);
+
+        // Hiển thị Timecard của nhân viên
+        manager.displayTimecards(emp.getId());
+    }
+}
