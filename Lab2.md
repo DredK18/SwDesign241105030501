@@ -82,7 +82,7 @@ Lớp Employee đại diện cho nhân viên:
     public String getName() {
         return name;
     }
-}
+      }
 
 Lớp Timecard lưu trữ thông tin giờ làm việc của nhân viên:
 
@@ -121,7 +121,7 @@ Lớp Timecard lưu trữ thông tin giờ làm việc của nhân viên:
                 ", hoursWorked=" + hoursWorked +
                 '}';
     }
-}
+      }
 
 Lớp TimecardManager quản lý các thao tác thêm, cập nhật, và hiển thị Timecard:
 
@@ -156,7 +156,7 @@ Lớp TimecardManager quản lý các thao tác thêm, cập nhật, và hiển 
             }
         }
     }
-}
+      }
 
 Lớp MaintainTimecardUseCase mô phỏng ca sử dụng Maintain Timecard:
 
@@ -175,4 +175,4 @@ Lớp MaintainTimecardUseCase mô phỏng ca sử dụng Maintain Timecard:
         // Hiển thị Timecard của nhân viên
         manager.displayTimecards(emp.getId());
     }
-}
+      }
