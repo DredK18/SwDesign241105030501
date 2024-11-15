@@ -26,7 +26,8 @@ ProjectManagementProxy giao tiếp với ProjectDatabaseBoundary để truy xu�
 |Paycheck          |PayrollProcessingService |
 |PurchaseOrder        |CommissionProcessingModule	   |
 |BankSystem     |BankTransactionService |
-|ProjectManagementDatabase        |ProjectManagementService |
+|ProjectManagement      |ProjectManagementService |
+|Document    |PrintService |
 
 
 ## 3. Design element to owning package map
@@ -39,6 +40,14 @@ ProjectManagementProxy giao tiếp với ProjectDatabaseBoundary để truy xu�
 |CommissionProcessingModule    |SalesModule   |
 |BankTransactionService       |BankingModule |
 |ProjectManagementService      |ProjectModule  |
+|PrintService    |PrintModule  |
+|BankSystem    |InfrastructureLayer  |
+|PrinterService     |InfrastructureLayer  |
+|ProjectManagementDatabase    |DataAccessLayer  |
+|EmployeeDB      |DataAccessLayer  |
+|ProjectDB    |DataAccessLayer  |
+|TimecardDB    |DataAccessLayer  |
+|BankDB    |DataAccessLayer  |
 
 
 ## 4. Design element to owning package map
